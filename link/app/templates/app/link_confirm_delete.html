@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container mt-5">
+    <div class="card shadow-sm">
+        <div class="card-body">
+            <h2 class="card-title text-danger">Delete Link</h2>
+            <p class="card-text">Are you sure you want to delete <strong>"{{ link.url }}"</strong>?</p>
+            <form method="post" class="mt-4">
+                {% csrf_token %}
+                <div class="d-flex gap-3">
+                    <button type="submit" class="btn btn-danger">Confirm</button>
+                    <a href="{% url 'link_list' %}" class="btn btn-secondary">Cancel</a>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock %}

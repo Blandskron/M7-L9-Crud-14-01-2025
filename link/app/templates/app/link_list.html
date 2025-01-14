@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container mt-5">
+    <h2 class="mb-4">Links</h2>
+    <div class="d-flex justify-content-end mb-3">
+        <a href="{% url 'link_create' %}" class="btn btn-success">Add New Link</a>
+    </div>
+    <ul class="list-group">
+        {% for link in links %}
+        <li class="list-group-item d-flex justify-content-between align-items-center">
+            <div>
+                <a href="{{ link.url }}" target="_blank" class="text-primary">{{ link.url }}</a> 
+                <span class="text-muted">- {{ link.description }}</span>
+            </div>
+            <div>
+                <a href="{% url 'link_update' link.pk %}" class="btn btn-sm btn-warning">Edit</a>
+                <a href="{% url 'link_delete' link.pk %}" class="btn btn-sm btn-danger">Delete</a>
+            </div>
+        </li>
+        {% empty %}
+        <li class="list-group-item text-center text-muted">
+            No links available.
+        </li>
+        {% endfor %}
+    </ul>
+</div>
+{% endblock %}
